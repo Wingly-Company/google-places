@@ -15,7 +15,7 @@ class GeocodeController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         $results = app(Pipeline::class)
-            ->send(GooglePlaces::geocode($request->query('input', '')))
+            ->send(GooglePlaces::geocode($request->query('input') ?? ''))
             ->through([Language::class, Country::class])
             ->thenReturn()
             ->get();
