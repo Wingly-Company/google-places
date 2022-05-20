@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
 use Wingly\GooglePlaces\GooglePlaces;
 use Wingly\GooglePlaces\Pipes\Country;
 use Wingly\GooglePlaces\Pipes\Language;
@@ -16,7 +17,7 @@ class AutocompleteController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         $results = app(Pipeline::class)
-            ->send(GooglePlaces::autocomplete($request->query('input') ?? ''))
+            ->send(GooglePlaces::autocomplete(Str::ascii($request->query('input')) ?? ''))
             ->through([Language::class, Country::class, Types::class])
             ->thenReturn()
             ->get();

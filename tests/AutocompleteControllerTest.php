@@ -25,6 +25,20 @@ class AutocompleteControllerTest extends TestCase
         $this->assertEquals([], $response->json());
     }
 
+    public function test_it_escapes_non_utf8_chars_in_the_input()
+    {
+        $response = $this->getJson('/autocomplete?input=paris%C2%B4%08');
+
+        $response->assertOk();
+
+        $response->assertOk();
+        $this->assertIsArray($response->json());
+
+        $prediction = $response->json()[0];
+
+        $this->assertArrayHasKey('name', $prediction);
+    }
+
     public function test_it_returns_empty_array_when_called_without_input()
     {
         $response = $this->getJson('/autocomplete');
