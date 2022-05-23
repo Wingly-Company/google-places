@@ -20,7 +20,11 @@ class DetailsEngine implements Engine
     {
         $payload = $this->getRequestPayload($builder);
 
-        $response = $this->client->request('GET', $this->endpoint, $payload);
+        $response = $this->client->request(
+            'GET',
+            $this->endpoint,
+            array_merge(['http_errors' => false], $payload)
+        );
 
         $response = json_decode($response->getBody());
 
