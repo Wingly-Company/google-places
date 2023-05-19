@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Wingly\GooglePlaces\GooglePlaces;
 use Wingly\GooglePlaces\Pipes\Country;
 use Wingly\GooglePlaces\Pipes\Language;
+use Wingly\GooglePlaces\Pipes\PlaceId;
 
 class GeocodeController extends Controller
 {
@@ -16,7 +17,7 @@ class GeocodeController extends Controller
     {
         $results = app(Pipeline::class)
             ->send(GooglePlaces::geocode($request->query('input') ?? ''))
-            ->through([Language::class, Country::class])
+            ->through([Language::class, Country::class, PlaceId::class])
             ->thenReturn()
             ->get();
 

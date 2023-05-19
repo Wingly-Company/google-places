@@ -26,7 +26,7 @@ class GooglePlaceDetailsTest extends TestCase
             ->setFields('formatted_address')
             ->get();
 
-        $this->assertEquals('Rome, Metropolitan City of Rome, Italy', $result['formatted_address']);
+        $this->assertEquals('Rome, Metropolitan City of Rome Capital, Italy', $result['formatted_address']);
 
         $result = GooglePlaces::details('ChIJu46S-ZZhLxMROG5lkwZ3D7k')
             ->setFields('formatted_address')

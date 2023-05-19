@@ -22,6 +22,9 @@ class Builder
     /** @var string */
     public $query;
 
+    /** @var string */
+    public $placeId;
+
     /** @var \Wingly\GooglePlaces\Engines\Engine */
     public $engine;
 
@@ -61,6 +64,13 @@ class Builder
     public function setFields(string $fields): self
     {
         $this->fields = $fields;
+
+        return $this;
+    }
+
+    public function setPlaceId(string $placeId): self
+    {
+        $this->placeId = $placeId;
 
         return $this;
     }
