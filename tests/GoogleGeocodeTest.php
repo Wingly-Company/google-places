@@ -31,7 +31,7 @@ class GoogleGeocodeTest extends TestCase
     {
         $result = GooglePlaces::geocode('Roma, Italy')->get();
 
-        $this->assertEquals('Rome, Metropolitan City of Rome, Italy', $result['formatted_address']);
+        $this->assertEquals('Rome, Metropolitan City of Rome Capital, Italy', $result['formatted_address']);
 
         $result = GooglePlaces::geocode('Roma, Italy')
             ->setLanguage('it')
@@ -63,5 +63,14 @@ class GoogleGeocodeTest extends TestCase
             ->get('googlegeocode-'.md5(config('google-places.google_api_key').'-Infinite Loop 1, Cupertino'));
 
         $this->assertEquals($results, $cachedResults);
+    }
+
+    public function test_place_id_overrides_address_when_provided()
+    {
+        $result = GooglePlaces::geocode('Faketown')
+            ->setPlaceId('ChIJ60OJPWsTLUYRA2vzEgdY4q4')
+            ->get();
+
+        $this->assertEquals('North Sea', $result['formatted_address']);
     }
 }

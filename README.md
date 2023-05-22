@@ -138,6 +138,7 @@ You can streamline your search by adding the following query params to your url:
 - `language`: To get the results in a specific language. Defaults to the application current locale. 
 - `country`: To get the results for a specific country. 
 - `types`: To get the results for a specific type. Available only for autocomplete requests.
+- `place_id`: (geocoding only) The place id returned by the autocomplete api. Will replace user input if provided.
 
 If you like to prevent the publishing of those routes completely, you can use the `ignoreRoutes` method provided by GooglePlaces.  
 Typically this method should be called in the register method of your `AppServiceProvider`: 

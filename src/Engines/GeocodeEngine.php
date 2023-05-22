@@ -20,7 +20,7 @@ class GeocodeEngine implements Engine
     {
         $payload = $this->getRequestPayload($builder);
 
-        if (empty($builder->query)) {
+        if (empty($builder->query) && empty($builder->placeId)) {
             return [];
         }
 
@@ -69,6 +69,11 @@ class GeocodeEngine implements Engine
             'address' => $builder->query,
             'language' => $builder->language,
         ];
+
+        if ($builder->placeId) {
+            $parameters['place_id'] = $builder->placeId;
+            unset($parameters['address']);
+        }
 
         if ($builder->country) {
             $parameters = array_merge(
