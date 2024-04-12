@@ -25,10 +25,10 @@ class Builder
     /** @var string */
     public $placeId;
 
-    /** @var \Wingly\GooglePlaces\Engines\Engine */
+    /** @var Engine */
     public $engine;
 
-    /** @var \Illuminate\Contracts\Cache\Repository */
+    /** @var Repository */
     public $cache;
 
     public function __construct(string $query, Engine $engine, Repository $cache)
