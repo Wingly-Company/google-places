@@ -31,6 +31,8 @@ class Builder
     /** @var Repository */
     public $cache;
 
+    public string|null $locationBias = null;
+
     public function __construct(string $query, Engine $engine, Repository $cache)
     {
         $this->query = $query;
@@ -71,6 +73,13 @@ class Builder
     public function setPlaceId(string $placeId): self
     {
         $this->placeId = $placeId;
+
+        return $this;
+    }
+
+    public function setLocationBias(string $locationBias): self
+    {
+        $this->locationBias = $locationBias;
 
         return $this;
     }

@@ -20,7 +20,7 @@ return [
     'control_structure_continuation_position' => true,
     'declare_parentheses' => true,
     'no_multiple_statements_per_line' => true,
-    'curly_braces_position' => true,
+    'braces_position' => true,
     'statement_indentation' => true,
     'cast_spaces' => true,
     'class_attributes_separation' => [
