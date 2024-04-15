@@ -28,7 +28,11 @@ class GoogleAutocompleteTest extends TestCase
 
     public function test_it_can_translate_the_data(): void
     {
-        $results = GooglePlaces::autocomplete('paris')->get();
+        $parisBias = 'circle:1000000@@48.8529674,2.3411474';
+
+        $results = GooglePlaces::autocomplete('paris')
+            ->setLocationBias($parisBias)
+            ->get();
 
         $this->assertEquals('Paris, France', $results[0]['name']);
 

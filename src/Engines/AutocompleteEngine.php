@@ -77,6 +77,7 @@ class AutocompleteEngine implements Engine
             'input' => $builder->query,
             'language' => $builder->language,
             'types' => $builder->types,
+            'locationbias' => $builder->locationBias,
         ];
 
         if ($builder->country) {
