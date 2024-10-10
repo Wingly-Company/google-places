@@ -94,10 +94,6 @@ class Builder
 
         $results = $this->engine->search($this);
 
-        if (! count($results)) {
-            return [];
-        }
-
         return $this->cacheResponse($cacheKey, $results);
     }
 
