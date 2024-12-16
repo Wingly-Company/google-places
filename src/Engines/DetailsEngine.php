@@ -58,8 +58,8 @@ class DetailsEngine implements Engine
         if (isset($result->opening_hours)) {
             $formatted['opening_hours'] = array_map(function ($period) {
                 return [
-                    'open' => get_object_vars($period->open),
-                    'close' => get_object_vars($period->close),
+                    'open' => is_object($period->open ?? null) ? get_object_vars($period->open) : null,
+                    'close' => is_object($period->close ?? null) ? get_object_vars($period->close) : null,
                 ];
             }, $result->opening_hours->periods);
         }
